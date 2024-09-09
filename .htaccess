@@ -1,0 +1,32 @@
+# Enable the RewriteEngine
+RewriteEngine On
+
+# Skip existing files and directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+<FilesMatch "\.(jpg|jpeg|png|gif|swf)$">
+    FileETag None
+    <IfModule mod_headers.c>
+        Header unset ETag
+        Header unset Pragma
+        Header set Cache-Control "max-age=31536000, public, must-revalidate"
+    </IfModule>
+</FilesMatch>
+<FilesMatch "\.(js|css|jpg|png|jpeg|gif|xml|json|txt|pdf|mov|avi|otf|woff|ico|swf)$">
+    <IfModule mod_headers.c>
+        RequestHeader unset Cookie
+        Header unset Cookie
+        Header unset Set-Cookie
+    </IfModule>
+</FilesMatch>
+
+# Skip JavaScript, CSS, and image files
+RewriteCond %{REQUEST_URI} !\.(js|css|png|jpg|jpeg|gif|ico)$ [NC]
+
+# Redirect Trailing Slashes If Not A Folder...
+# RewriteCond %{REQUEST_URI} (.+)/$
+# RewriteRule ^ %1 [L,R=301]
+
+# Send Requests To Front Controller...
+RewriteRule ^ index.php [L]
