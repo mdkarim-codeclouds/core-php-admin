@@ -20,3 +20,7 @@ function already_loggedin_redirect(){
         redirect(APP_URL.'/');
     }
 }
+
+function isValidEmail($email){ 
+    return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
+}

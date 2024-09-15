@@ -24,3 +24,7 @@ $users_table = "CREATE TABLE ".DB_TABLE_PREFIX."users(
     CONSTRAINT users_role_id_foreign_key FOREIGN KEY (role_id) REFERENCES ".DB_TABLE_PREFIX."roles(id) ON DELETE CASCADE ON UPDATE CASCADE  
 );";
 //run_query($users_table);
+
+$users_table_insert = "INSERT INTO ".DB_TABLE_PREFIX."users (name, email, password)
+VALUES ('Super Admin', 'super_admin@cyberline.com', '".md5('123456')."')";
+//run_query($users_table_insert);

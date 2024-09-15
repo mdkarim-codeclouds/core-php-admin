@@ -11,12 +11,27 @@ function disconnect_mysql($db_con){
     return mysqli_close($db_con); 
 }
 
-function run_query($query){
+function db_escape_string($data){
     $conn = connect_mysql();
+    if( empty($conn) ){
+        $result['msg'] = 'DB not connected';
+        return $result;
+    }
+    $data = mysqli_real_escape_string($conn, $data);
+    disconnect_mysql($conn);
+    return $data;
+}
+
+function run_query($query){
     $result = [
         'status' => 'failure',
         'msg' => '',
     ];
+    $conn = connect_mysql();
+    if( empty($conn) ){
+        $result['msg'] = 'DB not connected';
+        return $result;
+    }
     if ($result = mysqli_query($conn, $query)) {
         $result = [
             'status' => 'success',

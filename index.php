@@ -8,4 +8,9 @@ if(!empty($_GET['migrate'])){
     exit;
 }
 
+if(!empty($_POST['form_handler'])){
+    include_once('form_handler.php');
+    exit;
+}
+
 include_once('action.php');

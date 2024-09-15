@@ -47,7 +47,8 @@
                                         <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                                         <p class="text-center small d-none">Enter your email & password to login</p>
                                     </div>
-                                    <form class="row g-3 needs-validation" novalidate >
+                                    <form class="row g-3 needs-validation" novalidate method="POST">
+                                        <input type="hidden" name="form_handler" value="LOGIN" />
                                         <div class="col-12">
                                             <label for="yourEmail" class="form-label">Email</label>
                                             <div class="input-group has-validation">
