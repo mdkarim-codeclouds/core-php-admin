@@ -47,20 +47,24 @@
                                         <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                                         <p class="text-center small d-none">Enter your email & password to login</p>
                                     </div>
-                                    <form class="row g-3 needs-validation" novalidate method="POST">
+                                    <form class="row g-3" novalidate method="POST">
                                         <input type="hidden" name="form_handler" value="LOGIN" />
                                         <div class="col-12">
                                             <label for="yourEmail" class="form-label">Email</label>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                                <input type="email" name="email" class="form-control" id="yourEmail" required>
-                                                <div class="invalid-feedback">Please enter your email.</div>
+                                                <input type="email" name="email" class="form-control" id="yourEmail" value="<?= !empty($_SESSION['old']['email']) ? $_SESSION['old']['email'] :'' ?>" required>
+                                                <?php if(!empty($_SESSION['errors']['email']) || !empty($_SESSION['errors']['not_found'])){ ?>
+                                                <div class="invalid-feedback d-block"><?= ( $_SESSION['errors']['email'] ?? $_SESSION['errors']['not_found'] ) ?></div>
+                                                <?php } ?>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control" id="yourPassword" required>
-                                            <div class="invalid-feedback">Please enter your password!</div>
+                                            <input type="password" name="password" class="form-control" id="yourPassword" value="<?= !empty($_SESSION['old']['password']) ? $_SESSION['old']['password'] :'' ?>" required>
+                                            <?php if(!empty($_SESSION['errors']['password'])){ ?>
+                                            <div class="invalid-feedback d-block"><?= $_SESSION['errors']['password'] ?></div>
+                                            <?php } ?>
                                         </div>
                                         <div class="col-12 d-none">
                                             <div class="form-check">
@@ -94,5 +98,6 @@
     <!-- Template Main JS File -->
     <script src="<?=RESOURCES_URL?>/js/main.js"></script>
 
+    <?php unset($_SESSION['errors']); unset($_SESSION['old']); ?>
 </body>
 </html>
