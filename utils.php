@@ -65,6 +65,13 @@ function already_loggedin_redirect(){
     }
 }
 
+function user_logged_out(){
+    if(has_login_session()){
+        unset($_SESSION['user_login_info']);
+    }
+    redirect(APP_URL.'/');
+}
+
 function isValidEmail($email){
     return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
 }

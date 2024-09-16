@@ -1,7 +1,6 @@
 <?php
 
-$_SESSION['old']['email'] = $_POST['email'];
-$_SESSION['old']['password'] = $_POST['password'];
+$_SESSION['old'] = $_POST;
 if(!isValidEmail($_POST['email'])){
     $_SESSION['errors']['email'] = 'Please enter your email';
 }
