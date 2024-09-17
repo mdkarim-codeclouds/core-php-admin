@@ -1,5 +1,5 @@
 <?php
-$app_url = 'http://localhost/practice/CL';
+$app_url = !empty($_ENV['APP_URL']) ? $_ENV['APP_URL'] : 'http://localhost/practice/CL';
 define('APP_URL', $app_url);
 $current_url = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 define('CURRENT_URL', $current_url);
@@ -9,7 +9,7 @@ $current_uri_arr = !empty($current_uri) ? explode('/', $current_uri) : [];
 define('CURRENT_URI_ARR', $current_uri_arr);
 
 
-$resources_url = 'http://localhost/practice/CL/resources';
+$resources_url = !empty($_ENV['RESOURCES_URL']) ? $_ENV['RESOURCES_URL'] : 'http://localhost/practice/CL/resources';
 define('RESOURCES_URL', $resources_url);
 define('ROOT_DIR', __DIR__);
 
