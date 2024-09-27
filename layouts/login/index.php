@@ -97,7 +97,5 @@
 
     <!-- Template Main JS File -->
     <script src="<?=RESOURCES_URL?>/js/main.js"></script>
-
-    <?php unset($_SESSION['errors']); unset($_SESSION['old']); ?>
 </body>
 </html>

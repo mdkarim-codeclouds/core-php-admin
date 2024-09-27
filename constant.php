@@ -21,3 +21,6 @@ define('DB_PASSWORD', '');
 define('DB_TABLE_PREFIX', 'cli_');
 
 session_start();
+
+unset($_SESSION['errors']);
+unset($_SESSION['old']);

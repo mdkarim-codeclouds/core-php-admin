@@ -32,11 +32,69 @@ function run_query($query){
         $result['msg'] = 'DB not connected';
         return $result;
     }
-    if ($result = mysqli_query($conn, $query)) {
+    if ($res = mysqli_query($conn, $query)) {
         $result = [
             'status' => 'success',
             'msg' => 'Query run successfully',
         ];
+    } else {
+        $result = [
+            'status' => 'failure',
+            'msg' => mysqli_error($conn),
+        ];
+    }
+    disconnect_mysql($conn);
+    return $result;
+}
+
+function run_select($query){
+    $result = [
+        'status' => 'failure',
+        'msg' => '',
+        'data' => '',
+    ];
+    $conn = connect_mysql();
+    if( empty($conn) ){
+        $result['msg'] = 'DB not connected';
+        return $result;
+    }
+    $sql_data = mysqli_query($conn, $query);
+
+    $result = [];
+    if (mysqli_num_rows($sql_data) > 0) {
+        while($row = mysqli_fetch_assoc($sql_data)) {
+            $result['status'] = 'success';
+            $result['data'][] = $row;
+        }
+        mysqli_free_result($sql_data);
+    } else {
+        $result = [
+            'status' => 'failure',
+            'msg' => mysqli_error($conn),
+        ];
+    }
+    disconnect_mysql($conn);
+    return $result;
+}
+
+function run_select_first($query){
+    $result = [
+        'status' => 'failure',
+        'msg' => '',
+        'data' => '',
+    ];
+    $conn = connect_mysql();
+    if( empty($conn) ){
+        $result['msg'] = 'DB not connected';
+        return $result;
+    }
+    $sql_data = mysqli_query($conn, $query);
+
+    $result = [];
+    if (mysqli_num_rows($sql_data) > 0) {
+        $result['status'] = 'success';
+        $result['data'] = mysqli_fetch_assoc($sql_data);
+        mysqli_free_result($sql_data);
     } else {
         $result = [
             'status' => 'failure',

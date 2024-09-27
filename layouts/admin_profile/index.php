@@ -40,16 +40,18 @@
                                     <div class="row mb-3">
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Name</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="name" type="text" class="form-control" id="fullName" value="" />
+                                            <input name="name" type="text" class="form-control" id="fullName" value="<?=isset($_SESSION['old']['name']) ? $_SESSION['old']['name'] : $get_profile_data['name']?>" />
+                                            <?php if(isset($_SESSION['errors']['name']) || isset($_SESSION['errors']['not_found'])){ ?>
+                                            <div class="invalid-feedback d-block"><?= ( $_SESSION['errors']['name'] ?? $_SESSION['errors']['not_found'] ) ?></div>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="email" type="email" class="form-control" id="email" value="" readonly />
+                                            <input name="email" type="email" class="form-control" id="email" value="<?=$get_profile_data['email']?>" readonly />
                                         </div>
                                     </div>
-
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary">Save Changes</button>
                                     </div>
