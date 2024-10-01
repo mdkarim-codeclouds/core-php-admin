@@ -13,3 +13,7 @@ if(!empty($_POST['form_handler'])){
 }
 
 include_once('action.php');
+
+unset($_SESSION['errors']);
+unset($_SESSION['old']);
+unset($_SESSION['open_tab']);

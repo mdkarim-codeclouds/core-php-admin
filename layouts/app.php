@@ -32,6 +32,7 @@
 	<?php include_once(ROOT_DIR.'/layouts/footer/index.php'); ?>
 	<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 	<!-- Vendor JS Files -->
+	<script src="<?=RESOURCES_URL?>/vendor/jquery@3.6.0.min.js"></script>
 	<script src="<?=RESOURCES_URL?>/vendor/apexcharts/apexcharts.min.js"></script>
 	<script src="<?=RESOURCES_URL?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="<?=RESOURCES_URL?>/vendor/chart.js/chart.umd.js"></script>
@@ -42,5 +43,6 @@
 	<script src="<?=RESOURCES_URL?>/vendor/php-email-form/validate.js"></script>
 	<!-- Template Main JS File -->
 	<script src="<?=RESOURCES_URL?>/js/main.js"></script>
+	<?php if (function_exists('push_scripts')) { push_scripts(); } ?>
 </body>
 </html>

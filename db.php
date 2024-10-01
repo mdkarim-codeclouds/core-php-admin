@@ -51,7 +51,7 @@ function run_select($query){
     $result = [
         'status' => 'failure',
         'msg' => '',
-        'data' => '',
+        'data' => [],
     ];
     $conn = connect_mysql();
     if( empty($conn) ){
@@ -71,6 +71,7 @@ function run_select($query){
         $result = [
             'status' => 'failure',
             'msg' => mysqli_error($conn),
+            'data' => [],
         ];
     }
     disconnect_mysql($conn);
@@ -81,7 +82,7 @@ function run_select_first($query){
     $result = [
         'status' => 'failure',
         'msg' => '',
-        'data' => '',
+        'data' => [],
     ];
     $conn = connect_mysql();
     if( empty($conn) ){
@@ -99,6 +100,7 @@ function run_select_first($query){
         $result = [
             'status' => 'failure',
             'msg' => mysqli_error($conn),
+            'data' => [],
         ];
     }
     disconnect_mysql($conn);

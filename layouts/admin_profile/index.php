@@ -65,18 +65,27 @@
                                         <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="password" type="password" class="form-control" id="currentPassword">
+                                            <?php if(isset($_SESSION['errors']['password']) || isset($_SESSION['errors']['not_found'])){ ?>
+                                            <div class="invalid-feedback d-block"><?= ( $_SESSION['errors']['password'] ?? $_SESSION['errors']['not_found'] ) ?></div>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="newpassword" type="password" class="form-control" id="newPassword">
+                                            <?php if(isset($_SESSION['errors']['newpassword'])){ ?>
+                                            <div class="invalid-feedback d-block"><?= ( $_SESSION['errors']['newpassword'] ) ?></div>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
+                                        <label for="confirmPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                                            <input name="confirmpassword" type="password" class="form-control" id="confirmPassword">
+                                            <?php if(isset($_SESSION['errors']['confirmpassword'])){ ?>
+                                            <div class="invalid-feedback d-block"><?= ( $_SESSION['errors']['confirmpassword'] ) ?></div>
+                                            <?php } ?>
                                         </div>
                                     </div>
 
@@ -92,4 +101,13 @@
         </div>
     </section>
 
-  </main><!-- End #main -->
+</main><!-- End #main -->
+<?php function push_scripts(){ ?>
+<script>
+    $(document).ready(function(){
+        <?php if(!empty($_SESSION['open_tab'])){ ?>
+        $('[data-bs-target="#<?=$_SESSION['open_tab']?>"]').trigger('click');
+        <?php } ?>
+    });
+</script>
+<?php } ?>
